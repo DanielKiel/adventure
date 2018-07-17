@@ -16,6 +16,7 @@ class CreateWeathersTable extends Migration
         Schema::create('weather', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('cityId')->unsigned()->nullable();
+            $table->dateTime('forecastDate');
             $table->integer('apiId');
             $table->string('main');
             $table->string('description');
