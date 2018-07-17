@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts\WeatherSubscriptionInterface;
+use App\Repositories\WeatherSubscription;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,6 +18,8 @@ class AppServiceProvider extends ServiceProvider
         foreach (glob(app_path('/helper/*.php')) as $filename) {
             require $filename;
         }
+
+        $this->app->bind(WeatherSubscriptionInterface::class, WeatherSubscription::class);
     }
 
     /**

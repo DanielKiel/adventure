@@ -11,7 +11,9 @@ class City extends Model
     ];
 
     protected $casts = [
-        'apiId' => 'integer'
+        'apiId' => 'integer',
+        'lon' => 'float',
+        'lat'=> 'float'
     ];
 
     protected $dates = [

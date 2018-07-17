@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Weather;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -14,14 +15,16 @@ class WeatherDeleting
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public $model;
+
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Weather $model)
     {
-        //
+        $this->model = $model;
     }
 
     /**

@@ -19,8 +19,8 @@ class CreateCitiesTable extends Migration
             $table->bigInteger('apiId')->unique();
             $table->string('name');
             $table->string('country', 10);
-            $table->string('lon');
-            $table->string('lat');
+            $table->float('lon', 10, 6);
+            $table->float('lat', 10, 6);
             $table->timestamps();
         });
     }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\WeatherDeleting;
 use Illuminate\Database\Eloquent\Model;
 
 class Weather extends Model
@@ -30,9 +31,15 @@ class Weather extends Model
         'windDeg' => 'float',
         'rainLast3H' => 'float',
         'snowLast3H' => 'float',
+        'lon' => 'float',
+        'lat'=> 'float'
     ];
 
     protected $dates = [
         'created_at', 'updated_at', 'forecastDate', 'sunrise', 'sunset'
+    ];
+
+    protected $dispatchesEvents = [
+        'deleting' =>  WeatherDeleting::class
     ];
 }

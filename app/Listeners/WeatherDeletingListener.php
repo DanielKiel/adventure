@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\WeatherDeleting;
+use App\WeatherArchive;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -26,6 +27,6 @@ class WeatherDeletingListener
      */
     public function handle(WeatherDeleting $event)
     {
-        //
+        WeatherArchive::create($event->model->toArray());
     }
 }

@@ -41,8 +41,8 @@ class CreateWeatherForecastsTable extends Migration
             $table->dateTime('sunrise');
             $table->dateTime('sunset');
 
-            $table->string('lon')->nullable();
-            $table->string('lat')->nullable();
+            $table->float('lon', 10, 6)->nullable();
+            $table->float('lat', 10, 6)->nullable();
             $table->timestamps();
 
             $table->foreign('cityId')->references('id')->on('cities');
