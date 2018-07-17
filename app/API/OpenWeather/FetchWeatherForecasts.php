@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: dk
- * Date: 16.07.18
- * Time: 15:34
+ * Date: 17.07.18
+ * Time: 10:02
  */
 
 namespace App\API\OpenWeather;
@@ -11,16 +11,11 @@ namespace App\API\OpenWeather;
 
 use GuzzleHttp\Client;
 
-class FetchWeather
+class FetchWeatherForecasts
 {
-    /**
-     * @param $cityID
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
     public function getByCityId($cityID)
     {
-        $url = config('weatherAPI.actualUrl', 'api.openweathermap.org/data/2.5/weather');
+        $url = config('weatherAPI.forecastUrl', 'api.openweathermap.org/data/2.5/forecast');
         $key = config('weatherAPI.apiKey');
 
         $client = new Client([
@@ -34,6 +29,13 @@ class FetchWeather
             ]
         ]);
 
-        return json_decode($request->getBody()->getContents());
+        //check if all is ok
+        if ($request->getStatusCode() !== 200) {
+            //do something here
+        }
+
+        $all = json_decode($request->getBody()->getContents());
+
+        return $all->list;
     }
 }

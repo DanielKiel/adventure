@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWeathersTable extends Migration
+class CreateWeatherArchivesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWeathersTable extends Migration
      */
     public function up()
     {
-        Schema::create('weather', function (Blueprint $table) {
+        Schema::create('weather_archives', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('cityId')->unsigned()->nullable();
             $table->dateTime('forecastDate');
@@ -56,10 +56,10 @@ class CreateWeathersTable extends Migration
      */
     public function down()
     {
-        Schema::table('weather', function(Blueprint $table) {
-            $table->dropForeign('weather_cityId_foreign');
+        Schema::table('weather_archives', function(Blueprint $table) {
+            $table->dropForeign('weather_archives_cityId_foreign');
         });
 
-        Schema::dropIfExists('weather');
+        Schema::dropIfExists('weather_archives');
     }
 }
