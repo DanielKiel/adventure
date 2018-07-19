@@ -150,6 +150,8 @@ return [
         /*
          * Package Service Providers...
          */
+        \Lord\Laroute\LarouteServiceProvider::class,
+
 
         /*
          * Application Service Providers...

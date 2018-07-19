@@ -14,7 +14,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        //
+        return City::paginate();
     }
 
     /**
@@ -46,7 +46,7 @@ class CityController extends Controller
      */
     public function show(City $city)
     {
-        //
+        return $city;
     }
 
     /**
@@ -81,5 +81,22 @@ class CityController extends Controller
     public function destroy(City $city)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('query');
+
+        $city = new City();
+
+        foreach ($query as $search) {
+            $city = $city->where(
+                array_get($search, 'leftOperand'),
+                array_get($search, 'operand'),
+                array_get($search, 'rightOperand')
+            );
+        }
+
+        return $city->paginate();
     }
 }

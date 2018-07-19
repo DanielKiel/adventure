@@ -13,6 +13,7 @@ use App\API\OpenWeather\FetchWeather;
 use App\API\OpenWeather\FetchWeatherForecasts;
 use App\API\OpenWeather\TransformWeather;
 use App\City;
+use App\Events\WeatherSubscriptionActualized;
 use App\Weather;
 use App\WeatherForecast;
 use App\Contracts\WeatherSubscriptionInterface;
@@ -88,6 +89,9 @@ class WeatherSubscription implements WeatherSubscriptionInterface
                 $transformer = new TransformWeather();
                 WeatherForecast::create( $transformer->toModel($listEntry, $city->id) );
             }
+
+            //so the subscriber will be informed
+            event(new WeatherSubscriptionActualized($weatherSubscription));
         }
     }
 }

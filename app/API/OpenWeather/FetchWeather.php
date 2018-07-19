@@ -30,7 +30,9 @@ class FetchWeather
         $request = $client->request('GET',$url, [
             'query' => [
                 'id' => $cityID,
-                'appid' => $key
+                'appid' => $key,
+                'units' => 'metric',
+                'lang' => 'de'
             ]
         ]);
 
